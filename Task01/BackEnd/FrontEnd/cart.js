@@ -1,17 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Sample data for cart items
-    const cartItems = [
-        { id: 1, name: "Black Dress", price: 100, image: "Images/blackDress.jpeg", quantity: 1 },
-        { id: 2, name: "Short Dress", price: 80, image: "Images/shortDress.jpeg", quantity: 1 },
-        // Add more items as needed
-    ];
-
     const cartItemsContainer = document.getElementById("cart-items");
     const totalAmountElement = document.getElementById("total-amount");
 
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
     function renderCartItems() {
         cartItemsContainer.innerHTML = "";
-        cartItems.forEach(item => {
+        let total = 0;
+
+        cart.forEach((item, index) => {
             const cartItemElement = document.createElement("div");
             cartItemElement.classList.add("cart-item");
             cartItemElement.innerHTML = `
@@ -19,44 +16,43 @@ document.addEventListener("DOMContentLoaded", () => {
                 <h3>${item.name}</h3>
                 <p>Price: Rs.${item.price}</p>
                 <div class="quantity-control">
-                    <button onclick="decreaseQuantity(${item.id})">-</button>
+                    <button class="minus" data-index="${index}">-</button>
                     <span>${item.quantity}</span>
-                    <button onclick="increaseQuantity(${item.id})">+</button>
+                    <button class="plus" data-index="${index}">+</button>
                 </div>
                 <p>Total: Rs.${(item.price * item.quantity).toFixed(2)}</p>
-                <button onclick="removeFromCart(${item.id})">Remove</button>
+                <button class="remove" data-index="${index}">Remove</button>
             `;
             cartItemsContainer.appendChild(cartItemElement);
+            total += item.price * item.quantity;
         });
+
+        totalAmountElement.textContent = `Total: Rs.${total.toFixed(2)}`;
     }
 
-    window.increaseQuantity = function(id) {
-        const item = cartItems.find(item => item.id === id);
-        if (item) {
-            item.quantity++;
-            renderCartItems();
-        }
-    };
+    cartItemsContainer.addEventListener("click", event => {
+        const index = event.target.dataset.index;
 
-    window.decreaseQuantity = function(id) {
-        const item = cartItems.find(item => item.id === id);
-        if (item && item.quantity > 1) {
-            item.quantity--;
-            renderCartItems();
+        if (event.target.classList.contains("plus")) {
+            cart[index].quantity++;
+        } else if (event.target.classList.contains("minus")) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+            }
+        } else if (event.target.classList.contains("remove")) {
+            cart.splice(index, 1);
         }
-    };
 
-    window.removeFromCart = function(id) {
-        const itemIndex = cartItems.findIndex(item => item.id === id);
-        if (itemIndex !== -1) {
-            cartItems.splice(itemIndex, 1);
-            renderCartItems();
-        }
-    };
+        updateCart();
+        renderCartItems();
+    });
+
+    function updateCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
     document.getElementById("calculate-total").addEventListener("click", () => {
-        const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-        totalAmountElement.textContent = `Total: $${total.toFixed(2)}`;
+        renderCartItems();
     });
 
     renderCartItems();

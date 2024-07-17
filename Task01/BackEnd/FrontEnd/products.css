@@ -40,7 +40,7 @@ main {
 
 #product-detail {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    grid-template-columns: repeat(5, 1fr);
     gap: 2em;
     align-items: start;
 }
