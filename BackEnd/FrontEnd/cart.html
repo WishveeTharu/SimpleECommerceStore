@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <header>
+        <h1>The Shopping Center</h1>
+        <nav>
+            <a href="homePage.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="login.html">Login</a>
+            <a href="signUp.html">Sign Up</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="cart">
+            <h2>Shopping Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            <div id="total-section">
+                <button id="calculate-total">Calculate Total</button>
+                <p id="total-amount">Total: Rs.0.00</p>
+				<button id="pay-button" onclick="location.href='checkout.html'">Pay</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us at info@example.com</p>
+        <p>
+            Follow us on 
+            <a href="https://facebook.com"><img src="Images/facebook.png" alt="Facebook"></a>
+            <a href="https://twitter.com"><img src="Images/twitter.png" alt="Twitter"></a>
+            <a href="https://instagram.com"><img src="Images/instagram.jpeg" alt="Instagram"></a>
+        </p>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

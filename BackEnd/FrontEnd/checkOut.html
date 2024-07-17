@@ -1,0 +1,132 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkOut.css">
+</head>
+<body>
+    <header>
+        <h1>The Shopping Center</h1>
+        <nav>
+            <a href="homePage.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="login.html">Login</a>
+            <a href="signUp.html">Sign Up</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="checkout">
+            <h2>Checkout</h2>
+            <div id="order-summary">
+                <h3>Order Summary</h3>
+                <div id="order-items">
+                    <!-- Order items will be dynamically inserted here -->
+                <!--</div>
+                <p id="order-total">Total: Rs.0.00</p>
+            </div>
+
+            <form id="shipping-form">
+                <h3>Shipping Information</h3>
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <input type="text" id="address" name="address" placeholder="Address" required>
+                <input type="text" id="city" name="city" placeholder="City" required>
+                <input type="text" id="state" name="state" placeholder="State" required>
+                <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
+
+                <h3>Payment Information</h3>
+                <input type="text" id="card-number" name="card-number" placeholder="Card Number" required>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="Expiry Date (MM/YY)" required>
+                <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+
+                <button type="submit" id="submit-order">Submit Order</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us at info@example.com</p>
+        <p>
+            Follow us on 
+            <a href="https://facebook.com"><img src="Images/facebook.png" alt="Facebook"></a>
+            <a href="https://twitter.com"><img src="Images/twitter.png" alt="Twitter"></a>
+            <a href="https://instagram.com"><img src="Images/instagram.jpeg" alt="Instagram"></a>
+        </p>
+    </footer>
+
+    <script src="checkout.js"></script>
+</body>
+</html>-->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkOut.css">
+</head>
+<body>
+    <header>
+        <h1>The Shopping Center</h1>
+        <nav>
+            <a href="homePage.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="login.html">Login</a>
+            <a href="signUp.html">Sign Up</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="checkout">
+            <h2>Checkout</h2>
+            <div id="order-summary">
+                <h3>Order Summary</h3>
+                <div id="order-items">
+                    <!-- Order items will be dynamically inserted here -->
+                </div>
+                <p id="order-total">Total: Rs.0.00</p>
+            </div>
+
+            <form id="shipping-form">
+                <h3>Shipping Information</h3>
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <input type="text" id="address" name="address" placeholder="Address" required>
+                <input type="text" id="city" name="city" placeholder="City" required>
+                <input type="text" id="state" name="state" placeholder="State" required>
+                <input type="text" id="zip" name="zip" placeholder="Zip Code" required pattern="\d{5}" title="Please enter a 5-digit Zip Code">
+
+                <h3>Payment Information</h3>
+                <input type="text" id="card-number" name="card-number" placeholder="Card Number" required pattern="\d*" title="Please enter a valid card number">
+                <input type="month" id="expiry-date" name="expiry-date" required>
+                <input type="text" id="cvv" name="cvv" placeholder="CVV" required pattern="\d{3}" title="Please enter a 3-digit CVV">
+
+                <button type="submit" id="submit-order">Submit Order</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Contact us at info@example.com</p>
+        <p>
+            Follow us on 
+            <a href="https://facebook.com"><img src="Images/facebook.png" alt="Facebook"></a>
+            <a href="https://twitter.com"><img src="Images/twitter.png" alt="Twitter"></a>
+            <a href="https://instagram.com"><img src="Images/instagram.jpeg" alt="Instagram"></a>
+        </p>
+    </footer>
+
+    <script src="checkout.js"></script>
+</body>
+</html>
