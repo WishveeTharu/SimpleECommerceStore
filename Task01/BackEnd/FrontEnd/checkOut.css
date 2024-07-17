@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+nav {
+    margin-top: 0.5em;
+}
+
+nav a {
+    color: white;
+    margin: 0 1em;
+    text-decoration: none;
+}
+
+main {
+    padding: 9em 1em 1em;
+    flex: 1;
+}
+
+#checkout {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#order-summary, #shipping-form {
+    border: 1px solid #ccc;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2em;
+}
+
+#order-summary h3, #shipping-form h3 {
+    margin-top: 0;
+}
+
+#order-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+#order-total {
+    font-size: 1.5em;
+}
+
+#shipping-form input {
+    width: calc(50% - 10px);
+    margin: 0.5em 5px;
+    padding: 0.5em;
+}
+
+#submit-order {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+#submit-order:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 0.01em 0;
+    text-align: center;
+}
+
+footer img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 0 0.5em;
+}
