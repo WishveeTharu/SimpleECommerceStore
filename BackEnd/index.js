@@ -1,67 +1,77 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const mysql = require('mysql2');
+const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Connect to MySQL
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '', // Replace with your MySQL root password
-    database: 'ecommerce'
-});
-
-connection.connect(err => {
-    if (err) {
-        console.error('Error connecting to MySQL:', err);
-        return;
-    }
-    console.log('Connected to MySQL');
-});
+const port = 3000;
 
 // Middleware
-app.use(express.json());
-app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(cors());
 
-// Routes
-app.get('/api/products', (req, res) => {
-    connection.query('SELECT * FROM products', (err, results) => {
-        if (err) {
-            console.error('Error fetching products:', err);
-            res.status(500).json({ error: 'Internal server error' });
-            return;
-        }
-        res.json(results);
-    });
+// MySQL connection setup
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'shopping_cart'
 });
 
-// Seed database (run once)
-app.get('/seed', (req, res) => {
-    const products = [
-        { name: 'Product 1', description: 'Black Dress', price: 10, image: 'images/blackDress.jpeg' },
-        { name: 'Product 2', description: 'Short Dress', price: 20, image: 'images/shortDress.jpeg' },
-        { name: 'Product 3', description: 'Pijama', price: 30, image: 'images/pijama.jpeg' },
-        { name: 'Product 4', description: 'Red Dress', price: 40, image: 'images/redDress.jpeg' },
-        { name: 'Product 5', description: 'Short Dress2', price: 50, image: 'images/shortDress2.jpeg' },
-        { name: 'Product 6', description: 'Full Kit1', price: 60, image: 'images/fullkit1.jpeg' },
-        { name: 'Product 7', description: 'Full Kit2', price: 70, image: 'images/fullkit2.jpeg' },
-        { name: 'Product 8', description: 'Men Tshirt', price: 80, image: 'images/menTshirt.jpeg' },
-    ];
-    const query = 'INSERT INTO products (name, description, price, image) VALUES ?';
-    const values = products.map(product => [product.name, product.description, product.price, product.image]);
+db.connect(err => {
+  if (err) throw err;
+  console.log('MySQL connected...');
+});
 
-    connection.query(query, [values], (err, results) => {
-        if (err) {
-            console.error('Error seeding database:', err);
-            res.status(500).json({ error: 'Internal server error' });
-            return;
-        }
-        res.send('Database seeded');
-    });
+// Get all products
+app.get('/BackEnd/api/products', (req, res) => {
+  const sql = 'SELECT * FROM products';
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.send(results);
+  });
+});
+
+// Get product by ID
+app.get('/BackEnd/api/products/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'SELECT * FROM products WHERE id = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) throw err;
+    res.send(result[0]);
+  });
+});
+
+// Add item to cart
+app.post('/BackEnd/api/cart', (req, res) => {
+  const { productId, name, price, image, quantity } = req.body;
+  const sql = 'INSERT INTO cart (productId, name, price, image, quantity) VALUES (?, ?, ?, ?, ?)';
+  db.query(sql, [productId, name, price, image, quantity], (err, result) => {
+    if (err) throw err;
+    res.send({ message: 'Item added to cart', id: result.insertId });
+  });
+});
+
+// Get all items in cart
+app.get('/BackEnd/api/cart', (req, res) => {
+  const sql = 'SELECT * FROM cart';
+  db.query(sql, (err, results) => {
+    if (err) throw err;
+    res.send(results);
+  });
+});
+
+// Delete item from cart
+app.delete('/BackEnd/api/cart/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'DELETE FROM cart WHERE id = ?';
+  db.query(sql, [id], (err, result) => {
+    if (err) throw err;
+    res.send({ message: 'Item removed from cart' });
+  });
 });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
