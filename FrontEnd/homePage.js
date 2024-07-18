@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/api/products")
+    fetch("/BackEnd/api/productImages")
         .then(response => response.json())
         .then(products => {
             const productList = document.getElementById("product-list");
@@ -7,17 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 const productElement = document.createElement("div");
                 productElement.classList.add("product");
                 productElement.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
+                    <img src="${product.image}" alt="${product.name}" onclick="navigateToLogin()">
+					<!--
                     <h3>${product.name}</h3>
-                    <p>$${product.price}</p>
+                    <p>Rs.${product.price}</p>
                     <button onclick="addToCart('${product.id}')">Add to Cart</button>
+					-->
                 `;
                 productList.appendChild(productElement);
             });
         });
 });
 
-function addToCart(productId) {
-    console.log(`Product ${productId} added to cart`);
-    // Implement add to cart functionality here
+function navigateToLogin() {
+    window.location.href = "login.html";
 }
