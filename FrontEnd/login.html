@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +28,7 @@
                 <input type="password" id="password" name="password" required>
                 <button type="submit">Login</button>
             </form>
+            <p id="error-message" style="color: red;"></p>
             <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         </section>
     </main>
@@ -40,5 +42,97 @@
         </p>
     </footer>
     <script src="login.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('loggedIn')) {
+                document.querySelector('nav').innerHTML = `
+                    <a href="homePage.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="logout.html" onclick="logout()">Logout</a>
+                `;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('email');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>-->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <header>
+        <h1>The Shopping Center</h1>
+        <nav>
+            <a href="homePage.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="login.html">Login</a>
+            <a href="signUp.html">Sign Up</a>
+        </nav>
+    </header>
+    <main>
+        <section class="login-form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="error-message" style="color: red;"></p>
+            <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+        </section>
+    </main>
+    <footer>
+        <p>Contact us at info@example.com</p>
+        <p>
+            Follow us on 
+            <a href="https://facebook.com"><img src="images/facebook.png" alt="Facebook"></a>
+            <a href="https://twitter.com"><img src="images/twitter.png" alt="Twitter"></a>
+            <a href="https://instagram.com"><img src="images/instagram.jpeg" alt="Instagram"></a>
+        </p>
+    </footer>
+    <script src="login.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('loggedIn')) {
+                document.querySelector('nav').innerHTML = `
+                    <a href="homePage.html">Home</a>
+                    <a href="products.html">Products</a>
+                    <a href="cart.html">Cart</a>
+                    <!--<a href="logout.html" onclick="logout()">Logout</a>-->
+                `;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('email');
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>
