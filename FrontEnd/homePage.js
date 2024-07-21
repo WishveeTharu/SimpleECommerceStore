@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/BackEnd/api/productImages")
+    fetch("http://localhost:3000/BackEnd/api/productImages")
         .then(response => response.json())
         .then(products => {
             const productList = document.getElementById("product-list");
