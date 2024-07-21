@@ -39,7 +39,7 @@ app.get('/BackEnd/api/products', (req, res) => {
 
 // Get all product images
 app.get('/BackEnd/api/productImages', (req, res) => {
-  const sql = 'SELECT images FROM products';
+  const sql = 'SELECT image FROM products';
   db.query(sql, (err, results) => {
     if (err) throw err;
     res.send(results);

@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(data.message);
                 localStorage.removeItem("cart");
                 window.location.href = "confirmation.html";
+				console.log(data);
             } else {
                 alert(data.message);
             }
