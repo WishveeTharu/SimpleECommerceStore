@@ -1,7 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mysql = require('mysql2');
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mysql = require("mysql2");
+const cors = require("cors");
 
 const app = express();
 const port = 3000;
@@ -12,15 +12,16 @@ app.use(cors());
 
 // MySQL connection setup
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'shopping_cart'
+  host: "127.0.0.1",
+  user: "root",
+  password: "root",
+  database: "shopping_cart",
+  port: "8889",
 });
 
-db.connect(err => {
+db.connect((err) => {
   if (err) throw err;
-  console.log('MySQL connected...');
+  console.log("MySQL connected...");
 });
 
 // Routes
@@ -29,8 +30,8 @@ app.get('/', (req, res) => {
 });
 
 // Get all products
-app.get('/BackEnd/api/products', (req, res) => {
-  const sql = 'SELECT * FROM products';
+app.get("/BackEnd/api/products", (req, res) => {
+  const sql = "SELECT * FROM products";
   db.query(sql, (err, results) => {
     if (err) throw err;
     res.send(results);
@@ -47,9 +48,9 @@ app.get('/BackEnd/api/productImages', (req, res) => {
 });
 
 // Get product by ID
-app.get('/BackEnd/api/products/:id', (req, res) => {
+app.get("/BackEnd/api/products/:id", (req, res) => {
   const { id } = req.params;
-  const sql = 'SELECT * FROM products WHERE id = ?';
+  const sql = "SELECT * FROM products WHERE id = ?";
   db.query(sql, [id], (err, result) => {
     if (err) throw err;
     res.send(result[0]);
@@ -57,18 +58,19 @@ app.get('/BackEnd/api/products/:id', (req, res) => {
 });
 
 // Add item to cart
-app.post('/BackEnd/api/cart', (req, res) => {
+app.post("/BackEnd/api/cart", (req, res) => {
   const { productId, name, price, image, quantity } = req.body;
-  const sql = 'INSERT INTO cart (productId, name, price, image, quantity) VALUES (?, ?, ?, ?, ?)';
+  const sql =
+    "INSERT INTO cart (productId, name, price, image, quantity) VALUES (?, ?, ?, ?, ?)";
   db.query(sql, [productId, name, price, image, quantity], (err, result) => {
     if (err) throw err;
-    res.send({ message: 'Item added to cart', id: result.insertId });
+    res.send({ message: "Item added to cart", id: result.insertId });
   });
 });
 
 // Get all items in cart
-app.get('/BackEnd/api/cart', (req, res) => {
-  const sql = 'SELECT * FROM cart';
+app.get("/BackEnd/api/cart", (req, res) => {
+  const sql = "SELECT * FROM cart";
   db.query(sql, (err, results) => {
     if (err) throw err;
     res.send(results);
@@ -76,12 +78,12 @@ app.get('/BackEnd/api/cart', (req, res) => {
 });
 
 // Delete item from cart
-app.delete('/BackEnd/api/cart/:id', (req, res) => {
+app.delete("/BackEnd/api/cart/:id", (req, res) => {
   const { id } = req.params;
-  const sql = 'DELETE FROM cart WHERE id = ?';
+  const sql = "DELETE FROM cart WHERE id = ?";
   db.query(sql, [id], (err, result) => {
     if (err) throw err;
-    res.send({ message: 'Item removed from cart' });
+    res.send({ message: "Item removed from cart" });
   });
 });
 

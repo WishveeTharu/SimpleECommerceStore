@@ -151,6 +151,16 @@
 -->
 
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="products.css" />
+  </head>
+  <body>
+
 
 
 <!--
@@ -208,33 +218,42 @@
 </head>
 <body>
     <header>
-        <h1>The Shopping Center</h1>
-        <nav>
-            <a href="homePage.html">Home</a>
-            <a href="products.html">Products</a>
-            <a href="cart.html">Cart</a>
-            <a href="login.html">Login</a>
-            <a href="signUp.html">Sign Up</a>
-        </nav>
+      <h1>The Shopping Center</h1>
+      <nav>
+        <a href="homePage.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="login.html">Login</a>
+        <a href="signUp.html">Sign Up</a>
+      </nav>
     </header>
 
     <main>
-        <section id="product-list">
-            <!-- Products will be dynamically inserted here -->
-        </section>
+      <section id="product-list">
+        <!-- Products will be dynamically inserted here -->
+      </section>
     </main>
 
     <footer>
-        <p>Contact us at info@example.com</p>
-        <p>
-            Follow us on 
-            <a href="https://facebook.com"><img src="Images/facebook.png" alt="Facebook"></a>
-            <a href="https://twitter.com"><img src="Images/twitter.png" alt="Twitter"></a>
-            <a href="https://instagram.com"><img src="Images/instagram.jpeg" alt="Instagram"></a>
-        </p>
+      <p>Contact us at info@example.com</p>
+      <p>
+        Follow us on
+        <a href="https://facebook.com"
+          ><img src="Images/facebook.png" alt="Facebook"
+        /></a>
+        <a href="https://twitter.com"
+          ><img src="Images/twitter.png" alt="Twitter"
+        /></a>
+        <a href="https://instagram.com"
+          ><img src="Images/instagram.jpeg" alt="Instagram"
+        /></a>
+      </p>
     </footer>
 
     <script src="products.js"></script>
+
+  </body>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('loggedIn')) {

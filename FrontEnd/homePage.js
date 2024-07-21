@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:3000/BackEnd/api/products")
+    .then((response) => response.json())
+    .then((products) => {
+      const productList = document.getElementById("product-list");
+      products.forEach((product) => {
+        const productElement = document.createElement("div");
+        productElement.classList.add("product");
+        productElement.innerHTML = `
+
     fetch("http://localhost:3000/BackEnd/api/productImages")
         .then(response => response.json())
         .then(products => {
@@ -14,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button onclick="addToCart('${product.id}')">Add to Cart</button>
 					-->
                 `;
-                productList.appendChild(productElement);
-            });
-        });
+        productList.appendChild(productElement);
+      });
+    });
 });
 
 function navigateToLogin() {
-    window.location.href = "login.html";
+  window.location.href = "login.html";
 }
