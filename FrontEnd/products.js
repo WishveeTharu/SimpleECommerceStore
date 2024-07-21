@@ -1,3 +1,4 @@
+
 /*
 document.addEventListener("DOMContentLoaded", () => {
     fetch("/BackEnd/api/productImages")
@@ -35,6 +36,7 @@ function addToCart(productId) {
     });
 }
 */
+
 
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://localhost:3000/BackEnd/api/products")
