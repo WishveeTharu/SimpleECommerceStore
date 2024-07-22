@@ -1,33 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Fetch products
   fetch("http://localhost:3000/BackEnd/api/products")
     .then((response) => response.json())
     .then((products) => {
-      const productList = document.getElementById("product-list");
-      products.forEach((product) => {
-        const productElement = document.createElement("div");
-        productElement.classList.add("product");
-        productElement.innerHTML = `
-
-    fetch("http://localhost:3000/BackEnd/api/productImages")
-        .then(response => response.json())
-        .then(products => {
-            const productList = document.getElementById("product-list");
-            products.forEach(product => {
-                const productElement = document.createElement("div");
-                productElement.classList.add("product");
-                productElement.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" onclick="navigateToLogin()">
-					<!--
-                    <h3>${product.name}</h3>
-                    <p>Rs.${product.price}</p>
-                    <button onclick="addToCart('${product.id}')">Add to Cart</button>
-					-->
-                `;
-        productList.appendChild(productElement);
-      });
+      // Fetch product images
+      fetch("http://localhost:3000/BackEnd/api/productImages")
+        .then((response) => response.json())
+        .then((images) => {
+          const productList = document.getElementById("product-detail");
+          products.forEach((product) => {
+            // Find the image for the current product
+            const productImage = images.find((img) => img.productId === product.id);
+            const productElement = document.createElement("div");
+            productElement.id = "product-info";
+            productElement.innerHTML = `
+              <div id="product-image">
+                <img src="${productImage ? productImage.image : product.image}" alt="${product.Pname}">
+              </div>
+            `;
+  
+            productList.appendChild(productElement);
+          });
+        });
     });
 });
-
+  
 function navigateToLogin() {
   window.location.href = "login.html";
 }
