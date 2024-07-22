@@ -67,6 +67,14 @@ main {
     font-size: 1.5em;
 }
 
+#product-image img {
+    max-width: 100%;
+    border-radius: 5%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #shipping-form input {
     width: calc(50% - 10px);
     margin: 0.5em 5px;
@@ -101,4 +109,4 @@ footer img {
     height: 24px;
     border-radius: 50%;
     margin: 0 0.5em;
-}*/
+}
